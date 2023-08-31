@@ -12,6 +12,6 @@ router.post('/create',registerSchema, ValidateSchema, createAccount)
 router.get('/:id', ResolveAccount)
 
 //Get All Accounts
-router.get('/',  getAllAccounts)
+router.get('/getall',  getAllAccounts)
 
 module.exports = router

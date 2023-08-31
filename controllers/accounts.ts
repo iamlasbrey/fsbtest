@@ -18,7 +18,7 @@ const createAccount=(req: Request, res: Response) => {
     const newAccountDetails = {
         "accountName": req.body.accountName,
         "DoB": req.body.DoB,
-        "accountType": req.body.accountType,
+        "accountType": req.body.accountType.toLowerCase(),
         "initialBalance": req.body.initialBalance,
         "accountNumber": accountNumber
     }
