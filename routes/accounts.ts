@@ -9,9 +9,9 @@ const { createAccount, ResolveAccount , getAllAccounts} = require("../controller
 router.post('/create',registerSchema, ValidateSchema, createAccount)
 
 //Resolve Account Route
-router.get('/:id', ResolveAccount)
+router.get('/fetchaccount/:id', ResolveAccount)
 
 //Get All Accounts
-router.get('/getall',  getAllAccounts)
+router.get('/getall', getAllAccounts)
 
 module.exports = router

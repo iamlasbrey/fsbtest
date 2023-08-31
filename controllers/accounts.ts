@@ -57,9 +57,10 @@ const createAccount=(req: Request, res: Response) => {
 
     const getAllAccounts = (req: Request, res: Response) => {
             try {
+                if(BankAccounts.length === 0) res.status(404).send("No Accounts Found")
                 res.status(200).send({"First Bank Accounts": BankAccounts})
             } catch (error) {
-                res.status(500).send(error)
+                res.status(500).send({msg: error})
             }
     }
 
