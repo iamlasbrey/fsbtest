@@ -12,7 +12,7 @@ const schema = [
         .isDate()
         .withMessage('Must be a valid date in YYYY-MM-DD format'),
 
-        body('accountType').custom((value, {req}) => {
+        body('accountType').custom((value:any) => {
             const types = ['Savings', 'Checking', 'Credit', 'Fixed'];
             if (!types.includes(value)) {
               throw new Error('Unknown Account Ttype.');
