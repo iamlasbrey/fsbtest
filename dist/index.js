@@ -8,7 +8,7 @@ const cors = require('cors');
 app.use(cors());
 const accountRoute = require("../routes/accounts");
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.send("Welcome to Star Bank");
 });
 //routes
 app.use('/api/v1/F4BTEST', accountRoute);

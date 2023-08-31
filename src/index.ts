@@ -9,7 +9,7 @@ app.use(cors());
 const accountRoute = require("../routes/accounts")
 
 app.get("/", (req: Request, res: Response) => {
-    res.send("Hello World!");
+    res.send("Welcome to Star Bank");
 })
 
 //routes
