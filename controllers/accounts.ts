@@ -11,28 +11,42 @@ interface BankAccount {
 
 const BankAccounts:BankAccount[]  = []
 
+//Create Account
 const createAccount=async(req: Request, res: Response) => {
 
     const accountNumber = _.random(1000000000,9999999999).toString()
 
-    const newAccountDetails = {
-        "accountName": req.body.accountName,
-        "DoB": req.body.DoB,
-        "accountType": req.body.accountType.toLowerCase(),
-        "initialBalance": req.body.initialBalance,
-        "accountNumber": accountNumber
-    }
-    
-    try {
-        res.status(201).send({createdSuccessfully: newAccountDetails})
-        BankAccounts.push(newAccountDetails)
-        
-    } catch (error) {
-        res.status(500).send(error)
+    if(req.body.accountName && req.body.DoB && req.body.accountType && req.body.initialBalance){
+        const newAccountDetails = {
+            "accountName": req.body.accountName,
+            "DoB": req.body.DoB,
+            "accountType": req.body.accountType.toLowerCase(),
+            "initialBalance": req.body.initialBalance,
+            "accountNumber": accountNumber
         }
+    
+        const response = {
+            "accountName": req.body.accountName,
+            "accountType": req.body.accountType.toLowerCase(),
+            "initialBalance": req.body.initialBalance,
+            "accountNumber": accountNumber
+        }
+    
+        
+        try {
+            res.status(201).send({createdSuccessfully: response})
+            BankAccounts.push(newAccountDetails)
+            
+        } catch (error) {
+            res.status(500).send(error)
+            }
+    }else{
+        res.status(400).send("Please Provide All Fields")
     }
+}
 
 
+//Fetch Account by ID
     const ResolveAccount = (req: Request, res: Response) => {
         try {
             const id = req.params.id
@@ -55,6 +69,8 @@ const createAccount=async(req: Request, res: Response) => {
         }
     }
 
+
+//Fetch All Accounts
     const getAllAccounts = (req: Request, res: Response) => {
             try {
                 if(BankAccounts.length === 0) res.status(404).send("No Accounts Found")

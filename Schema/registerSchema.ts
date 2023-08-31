@@ -1,5 +1,7 @@
 const {body} = require('express-validator');
 
+//The Middleware Schema to Ensure inputs meet the requirements
+
 const schema = [
     body('accountName')
         .isLength({min:3, max:100})
@@ -12,7 +14,7 @@ const schema = [
         .isDate()
         .withMessage('Must be a valid date in YYYY-MM-DD format'),
 
-        body('accountType').custom((value:any) => {
+    body('accountType').custom((value:any) => {
             const types = ['savings', 'current', 'credit', 'fixed'];
             if (!types.includes(value.toLowerCase())) {
               throw new Error('Unknown Account Ttype.');
