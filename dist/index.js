@@ -1,8 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const accountRoute = require("../routes/accounts");
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+});
 //routes
 app.use('/api/v1/F4BTEST', accountRoute);
 app.listen(3003, () => {
