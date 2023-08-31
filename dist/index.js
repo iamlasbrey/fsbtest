@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const cors = require('cors');
+app.use(cors());
 const accountRoute = require("../routes/accounts");
 app.get("/", (req, res) => {
     res.send("Hello World!");

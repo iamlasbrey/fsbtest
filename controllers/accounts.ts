@@ -11,7 +11,7 @@ interface BankAccount {
 
 const BankAccounts:BankAccount[]  = []
 
-const createAccount=(req: Request, res: Response) => {
+const createAccount=async(req: Request, res: Response) => {
 
     const accountNumber = _.random(1000000000,9999999999).toString()
 
