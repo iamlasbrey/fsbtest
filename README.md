@@ -22,8 +22,8 @@ Star Bank API is a simple Bank API where users can create an account and fetch a
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
 | POST | /api/v1/F4BTEST/create | To Create a new Bank Account |
-| GET |  /api/v1/F4BTEST/getall  | To Fetch all Bank Accounts |
-| GET | /api/v1/F4BTEST/fetchaccount/:id | To Fetch the Bank Account with correspoding ID |
+| GET |  /api/v1/F4BTEST/fetchall  | To Fetch all Bank Accounts |
+| GET | /api/v1/F4BTEST/resolve/:id | To Fetch the Bank Account with correspoding ID |
 
 
 ### Technologies Used
