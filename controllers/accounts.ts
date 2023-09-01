@@ -4,7 +4,7 @@ const _ = require("lodash");
 interface BankAccount {
     accountNumber: string;
     accountName: string;
-    DoB: string;
+    DateOfBirth: string;
     accountType: string;
     initialBalance: number;
   }
@@ -18,21 +18,20 @@ const createAccount=async(req: Request, res: Response) => {
 
 
         const newAccountDetails = {
-            "accountName": req.body.accountName,
-            "DoB": req.body.DoB,
+            "accountName": req.body.accountName.toLowerCase(),
+            "DateOfBirth": req.body.DateOfBirth,
             "accountType": req.body.accountType.toLowerCase(),
             "initialBalance": req.body.initialBalance,
             "accountNumber": accountNumber
         }
     
         const response = {
-            "accountName": req.body.accountName,
+            "accountNumber": accountNumber,
+            "accountName": req.body.accountName.toLowerCase(),
             "accountType": req.body.accountType.toLowerCase(),
             "initialBalance": req.body.initialBalance,
-            "accountNumber": accountNumber
         }
-    
-        
+  
         try {
             res.status(201).send({createdSuccessfully: response})
             BankAccounts.push(newAccountDetails)
@@ -59,7 +58,7 @@ const createAccount=async(req: Request, res: Response) => {
               }
               const account = findAccountByNumber(id)
     
-              if(account) res.status(200).send(account)
+              if(account) res.status(200).send({"Your Account Details": account})
               else res.status(404).send("Account not found")
             
         } catch (error) {
