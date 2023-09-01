@@ -7,7 +7,7 @@ Star Bank API is a simple Bank API where users can create an account and fetch a
 
 ### Star Bank Features
 * User can create Bank Accounts
-* User can fetch A Bank Account
+* User can fetch A Specific Bank Account
 * User can fetch all Bank Accounts
 
 ### Installation Guide
