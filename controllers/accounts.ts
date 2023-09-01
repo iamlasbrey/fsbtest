@@ -16,7 +16,7 @@ const createAccount=async(req: Request, res: Response) => {
 
     const accountNumber = _.random(1000000000,9999999999).toString()
 
-    if(req.body.accountName && req.body.DoB && req.body.accountType && req.body.initialBalance){
+
         const newAccountDetails = {
             "accountName": req.body.accountName,
             "DoB": req.body.DoB,
@@ -40,10 +40,8 @@ const createAccount=async(req: Request, res: Response) => {
         } catch (error) {
             res.status(500).send(error)
             }
-    }else{
-        res.status(400).send("Please Provide All Fields")
     }
-}
+
 
 
 //Fetch Account by ID
