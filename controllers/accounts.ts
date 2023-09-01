@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 const _ = require("lodash");
 
 interface BankAccount {
-    accountNumber: string;
+    accountNumber: number;
     accountName: string;
     DateOfBirth: string;
     accountType: string;
@@ -14,7 +14,7 @@ const BankAccounts:BankAccount[]  = []
 //Create Account
 const createAccount=async(req: Request, res: Response) => {
 
-    const accountNumber = _.random(1000000000,9999999999).toString()
+    const accountNumber = _.random(1000000000,9999999999)
 
 
         const newAccountDetails = {
@@ -45,10 +45,11 @@ const createAccount=async(req: Request, res: Response) => {
 
 //Fetch Account by ID
     const ResolveAccount = (req: Request, res: Response) => {
+        
         try {
-            const id = req.params.id
-            
-            function findAccountByNumber(accountNumber: string): BankAccount | undefined {
+
+            const id = parseInt(req.params.id) 
+            function findAccountByNumber(accountNumber: number): BankAccount | undefined {
                 for (const account of BankAccounts) {
                   if (account.accountNumber === accountNumber) {
                     return account;

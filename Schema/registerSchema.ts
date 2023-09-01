@@ -1,8 +1,8 @@
 const {body, check} = require('express-validator');
 
-//The Middleware Schema to Ensure inputs meet the requirements
-
+//The Middleware Schema to Ensure inputs meet the requirement
 const schema = [
+
     check('accountName')
         .notEmpty()
         .escape()
@@ -32,9 +32,9 @@ const schema = [
       .withMessage('Account Type is Required')
       .escape()
       .custom((value:string) => {
-            const types = ['savings', 'current', 'credit', 'fixed'];
+            const types = ['savings', 'current', 'credit', 'fixed', 'checking'];
             if (!types.includes(value.toLowerCase())) {
-              throw new Error('Account Type must be one of the following: savings, current, credit, fixed');
+              throw new Error('Account Type must be one of the following: savings, current, credit, fixed, checking');
             }
             return true;
           }),
