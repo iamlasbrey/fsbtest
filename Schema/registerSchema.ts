@@ -9,7 +9,8 @@ const schema = [
         .withMessage('Name is Required')
         .isLength({min: 3,max:280})       
         .withMessage('Name must be between 3 and 280 characters')
-        .matches(/^[A-Za-z\s]*$/)
+        .matches(/^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/)
+        .withMessage('Name must be a valid name that contains first name and last name')
         .trim(),
 
     body('DateOfBirth')

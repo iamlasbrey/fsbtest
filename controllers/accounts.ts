@@ -33,21 +33,23 @@ const createAccount=async(req: Request, res: Response) => {
         }
   
         try {
-            res.status(201).send({createdSuccessfully: response})
+            res.status(201).send({
+                    "status": "success",
+                    "message": "Account created successfully",
+                    "data": response
+            })
             BankAccounts.push(newAccountDetails)
             
         } catch (error) {
             res.status(500).send(error)
-            }
+        }
     }
-
 
 
 //Fetch Account by ID
     const ResolveAccount = (req: Request, res: Response) => {
         
         try {
-
             const id = parseInt(req.params.id) 
             function findAccountByNumber(accountNumber: number): BankAccount | undefined {
                 for (const account of BankAccounts) {
@@ -59,7 +61,11 @@ const createAccount=async(req: Request, res: Response) => {
               }
               const account = findAccountByNumber(id)
     
-              if(account) res.status(200).send({"Your Account Details": account})
+              if(account) res.status(200).send({
+                    "status": "success",
+                    "message": "Account fetched successfully",
+                    "data": account
+              })
               else res.status(404).send("Account not found")
             
         } catch (error) {
@@ -72,7 +78,15 @@ const createAccount=async(req: Request, res: Response) => {
     const getAllAccounts = (req: Request, res: Response) => {
             try {
                 if(BankAccounts.length === 0) res.status(404).send("No Accounts Found")
-                res.status(200).send({"Star Bank Accounts": BankAccounts})
+                res.status(200).send({
+                        
+                    "status": "success",
+                    "message": "All accounts fetched successfully",
+                    "data":{
+                        "Star Bank Accounts": BankAccounts
+                    }
+                })
+                    
             } catch (error) {
                 res.status(500).send({msg: error})
             }

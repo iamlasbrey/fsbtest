@@ -6,7 +6,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const cors = require('cors');
 app.use(cors());
+//Routes Import
 const accountRoute = require("../routes/accounts");
+//Home Page Route
 app.get("/", (req, res) => {
     res.send("Welcome to Star Bank");
 });
