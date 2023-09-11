@@ -16,7 +16,12 @@ const createAccount=async(req: Request, res: Response) => {
 
     const accountNumber = _.random(1000000000,9999999999)
 
-
+    for (let i = 0; i < BankAccounts.length; i++) {
+        const element = BankAccounts[i].accountNumber;
+        if(element == accountNumber){
+            return res.status(404).send("Account Number already exist")
+        }
+    }
         const newAccountDetails = {
             "accountName": req.body.accountName.toLowerCase(),
             "DateOfBirth": req.body.DateOfBirth,
@@ -33,12 +38,13 @@ const createAccount=async(req: Request, res: Response) => {
         }
   
         try {
+            
+            BankAccounts.push(newAccountDetails)
             res.status(201).send({
                     "status": "success",
                     "message": "Account created successfully",
                     "data": response
             })
-            BankAccounts.push(newAccountDetails)
             
         } catch (error) {
             res.status(500).send(error)
@@ -77,16 +83,17 @@ const createAccount=async(req: Request, res: Response) => {
 //Fetch All Accounts
     const getAllAccounts = (req: Request, res: Response) => {
             try {
-                if(BankAccounts.length === 0) res.status(404).send("No Accounts Found")
-                res.status(200).send({
-                        
-                    "status": "success",
-                    "message": "All accounts fetched successfully",
-                    "data":{
-                        "Star Bank Accounts": BankAccounts
-                    }
-                })
-                    
+                if(BankAccounts.length === 0) {
+                    return res.status(404).send("No Accounts Found")
+                }else{
+                    return res.status(200).send({
+                        "status": "success",
+                        "message": "All accounts fetched successfully",
+                        "data":{
+                            "Star Bank Accounts": BankAccounts
+                        }
+                    })
+                }         
             } catch (error) {
                 res.status(500).send({msg: error})
             }

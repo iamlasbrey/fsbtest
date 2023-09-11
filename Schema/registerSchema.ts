@@ -13,12 +13,12 @@ const schema = [
         .withMessage('Name must be a valid name that contains first name and last name')
         .trim(),
 
-    body('DateOfBirth')
-        .exists()
-        .withMessage('Date of birth is required')
-        .trim()  
-        .isDate()
-        .withMessage('Must be a valid date in YYYY-MM-DD format'),
+    // body('DateOfBirth')
+    //     .exists()
+    //     .withMessage('Date of birth is required')
+    //     .trim()  
+    //     .isDate()
+    //     .withMessage('Must be a valid date in YYYY-MM-DD format'),
 
         // body('accountType')
         //   .exists()
@@ -27,6 +27,24 @@ const schema = [
         //   .withMessage('account type must be a String')
         //   .isIn(['savings', 'current', 'credit', 'fixed'])
         //   .withMessage('account type must be one of the following: savings, current, credit, fixed'),
+
+      body('DateOfBirth')
+      .exists()
+      .withMessage('Date Of Birth is reqquired')
+      .escape()
+      .isDate()
+      .withMessage('Must be a valid date in YYYY-MM-DD format')
+      .custom((value:any) => {
+        const d = new Date();
+        let year = d.getFullYear()
+        const user_year = value.split("-")[0]
+
+        if(year - user_year < 18){
+          throw new Error('You must be 18 or above');
+        }
+        return true
+      }),
+
 
     body('accountType')
       .exists()
